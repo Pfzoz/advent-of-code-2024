@@ -22,4 +22,17 @@ int main(int argc, char** args) {
         return 1;
     }
     std::array<std::vector<int>, 2> columns = read_input(args[1]);
+    int column_size = columns[1].size();
+    int similarity_score = 0;
+    for (int i = 0; i < column_size; i++) {
+        int left_number = columns[0][i];
+        int occurence = 0;
+        for (int j = 0; j < column_size; j++) {
+            int right_number = columns[1][j];
+            if (right_number == left_number) occurence++;
+        }
+        similarity_score += occurence * left_number;
+    }
+    std::cout << "Similarity score: " << similarity_score << '\n';
+    return 0;
 }
